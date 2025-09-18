@@ -1,0 +1,31 @@
+@import "tailwindcss";@theme {
+  --font-cairo: "Cairo", sans-serif ;
+  --font-noto-arabic: "Noto Sans Arabic", sans-serif;
+  --font-sans: var(--font-noto-arabic);
+  --color-primary: #2F5233;
+  --color-primary-light: #6BBF59;
+
+  --color-secondary: #F5F5DC;
+  --color-secondary-dark: #e2e2c8;
+
+  --color-white: #ffffff;
+  --color-black: #1a1a1a;
+  --color-gray: #6B7280;
+
+  --color-error: #DC2626;
+  --color-success: #16A34A;
+}
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slideDown {
+  animation: slideDown 0.3s ease-out;
+}
