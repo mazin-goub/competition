@@ -4,15 +4,16 @@ import * as Yup from "yup";
 import api from "../utils/axiosInstance";
 import { userContext } from "../../context/UserContext";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export default function EditProfileInfo() {
   let { userTokenAccess } = useContext(userContext);
   const [userInfo, setUserInfo] = useState(null);
-
+  let navigate = useNavigate();
   async function getUserInfo() {
     try {
       let { data } = await api.get(
-        `https://apis.healing-herb.midoghanam.site/auth/account/userProfile/`,
+        `/auth/account/userProfile/`,
         {
           headers: {
             Authorization: `Bearer ${userTokenAccess}`,
@@ -20,6 +21,7 @@ export default function EditProfileInfo() {
         }
       );
       setUserInfo(data.user);
+
     } catch (err) {
       toast.error("فشل في تحميل البيانات");
     }
@@ -28,7 +30,7 @@ export default function EditProfileInfo() {
   async function updateProfile(values) {
     try {
       await api.put(
-        `https://apis.healing-herb.midoghanam.site/auth/account/userProfile/`,
+        `/auth/account/userProfile/`,
         values,
         {
           headers: {
@@ -37,6 +39,7 @@ export default function EditProfileInfo() {
         }
       );
       toast.success("تم تعديل البيانات بنجاح");
+      navigate('/dashboard')
     } catch (err) {
       toast.error("فشل في تعديل البيانات");
     }
@@ -54,6 +57,8 @@ export default function EditProfileInfo() {
     diseases: Yup.string(),
     allergies: Yup.string(),
     medications: Yup.string(),
+    height: Yup.number(),
+    weight: Yup.number(),
   });
 
   return (
@@ -70,6 +75,8 @@ export default function EditProfileInfo() {
             diseases: userInfo?.diseases || "",
             allergies: userInfo?.allergies || "",
             medications: userInfo?.medications || "",
+            height: userInfo?.height || "",
+            weight: userInfo?.weight || "",
           }}
           validationSchema={validationSchema}
           onSubmit={(values) => updateProfile(values)}
@@ -118,6 +125,14 @@ export default function EditProfileInfo() {
               <div>
                 <label className="block">الأدوية</label>
                 <Field name="medications" className="border p-2 w-full rounded" />
+              </div>
+              <div>
+                <label className="block">الوزن</label>
+                <Field name="weight" className="border p-2 w-full rounded" />
+              </div>
+              <div>
+                <label className="block">الطول (سم)</label>
+                <Field name="height" className="border p-2 w-full rounded" />
               </div>
 
               <button

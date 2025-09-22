@@ -1,144 +1,10 @@
-// import { useContext, useEffect } from "react";
-// import api from "../utils/axiosInstance"
-// import Charts from "./Charts"
-// import { userContext } from "../../context/UserContext";
-// import { useState } from "react";
-// import toast from "react-hot-toast";
-// // import EditProfileInfo from "./EditProfileInfo";
-// import { Link } from "react-router-dom";
-// export default function Dashboard() {
-//   let { userTokenAccess } = useContext(userContext);
-//   const [userInfo, setUserInfo] = useState(null)
-//   async function userInformation() {
-//     try{
-
-//       let {data} = await api.get(`/auth/account/userProfile/`
-//         ,{
-//           headers: {
-//                 Authorization: `Bearer ${userTokenAccess}`,
-//           },
-//         }
-//       );
-//       setUserInfo(data.user)
-//     }catch(err){
-//       toast.error('خطأ')
-//     }
-//   }
-//   useEffect(()=>{userInformation()},[])
-//   return (
-//     <>
-//     {userInfo && <section className='pt-4 md:pt-15 font-cairo min-h-screen'>
-//         <div className="flex flex-col lg:flex-row">
-//           {/* Header - becomes full width on mobile, 1/6 on desktop */}
-//           <header className="w-full lg:w-1/6 lg:h-5/6 bg-emerald-950 text-white p-4 m-2 lg:m-4 rounded-lg shadow-lg">
-//             <h1 className="text-xl font-bold">الحساب</h1>
-//             <nav className="mt-4 space-y-2">
-//               <a href="#" className="block hover:text-gray-300">الاسم / {userInfo?.name?.first}</a>
-//               <a href="#" className="block hover:text-gray-300">العمر / {userInfo?.age}</a>
-//               <a href="#" className="block hover:text-gray-300">الجنس / {userInfo?.gender}</a>
-//               <a href="#" className="block hover:text-gray-300">الامراض المزمنة / {userInfo?.diseases}</a>
-//             </nav>
-//           </header>
-//           <Link to={"/editProfile"} state={{ userInfo }}>
-//   تعديل الحساب
-// </Link>
-
-//           <main className="w-full lg:w-5/6 p-2 md:p-4 lg:p-6">
-
-//             <section className="mb-6">
-//               <h1 className="text-2xl md:text-3xl lg:text-4xl mb-4">نظرة عامة</h1>
-//               <div className="cards w-full flex flex-col sm:flex-row flex-wrap justify-start">
-
-//                 <div className="card bg-emerald-900 text-white p-4 m-2 md:m-4 rounded-lg shadow-lg w-full sm:w-[calc(50%-1rem)] lg:w-85 mb-4">
-//                   <h2 className="text-xl md:text-2xl font-bold mb-2">عدد المواعيد</h2>
-//                   <p className="text-2xl md:text-3xl">3</p>
-//                 </div>
-
-//                 <div className="card bg-emerald-900 text-white p-4 m-2 md:m-4 rounded-lg shadow-lg w-full sm:w-[calc(50%-1rem)] lg:w-85 mb-4">
-//                   <h2 className="text-xl md:text-2xl font-bold mb-2">عدد التثارير</h2>
-//                   <p className="text-2xl md:text-3xl">5</p>
-//                 </div>
-
-//                 <div className="card bg-emerald-900 text-white p-4 m-2 md:m-4 rounded-lg shadow-lg w-full sm:w-[calc(50%-1rem)] lg:w-85 mb-4">
-//                   <h2 className="text-xl md:text-2xl font-bold mb-2">عدد الوصفات</h2>
-//                   <p className="text-2xl md:text-3xl">2</p>
-//                 </div>
-
-//               </div>
-//             </section>
-
-//             <section className="mb-6">
-//               <h1 className="text-2xl md:text-3xl lg:text-4xl mb-4">الإحصائيات</h1>
-//               <div className="charts overflow-x-auto">
-//                 <Charts></Charts>
-//               </div>
-//             </section>
-
-//             <section className="mb-6">
-//               <h1 className="text-2xl md:text-3xl lg:text-4xl mb-4">مواعيد</h1>
-//               <div className="cards w-full flex flex-col sm:flex-row flex-wrap justify-start">
-
-//                 <div className="card bg-emerald-900 text-white p-4 m-2 md:m-4 rounded-lg shadow-lg w-full sm:w-[calc(50%-1rem)] lg:w-85 mb-4">
-//                   <h2 className="text-xl md:text-2xl font-bold mb-2">موعد مع د. أحمد</h2>
-//                   <p className="mb-1">التاريخ: 2023-10-15</p>
-//                   <p className="mb-1">الوقت: 10:00 صباحًا</p>
-//                   <p className="mb-1">المكان: مستشفى المدينة</p>
-//                 </div>
-
-//                 <div className="card bg-emerald-900 text-white p-4 m-2 md:m-4 rounded-lg shadow-lg w-full sm:w-[calc(50%-1rem)] lg:w-85 mb-4">
-//                   <h2 className="text-xl md:text-2xl font-bold mb-2">موعد مع د. سارة</h2>
-//                   <p className="mb-1">التاريخ: 2023-11-20</p>
-//                   <p className="mb-1">الوقت: 02:00 مساءً</p>
-//                   <p className="mb-1">المكان: عيادة الشفاء</p>
-//                 </div>
-
-//                 <div className="card bg-emerald-900 text-white p-4 m-2 md:m-4 rounded-lg shadow-lg w-full sm:w-[calc(50%-1rem)] lg:w-85 mb-4">
-//                   <h2 className="text-xl md:text-2xl font-bold mb-2">موعد مع د. ليلى</h2>
-//                   <p className="mb-1">التاريخ: 2023-12-05</p>
-//                   <p className="mb-1">الوقت: 11:30 صباحًا</p>
-//                   <p className="mb-1">المكان: مركز الرعاية الصحية</p>
-//                 </div>
-
-//               </div>
-//             </section>
-
-//             <section className="mb-6">
-//               <h1 className="text-2xl md:text-3xl lg:text-4xl mb-4">التقارير</h1>
-//               <div className="cards w-full flex flex-col sm:flex-row flex-wrap justify-start">
-
-//                 <div className="card bg-emerald-900 text-white p-4 m-2 md:m-4 rounded-lg shadow-lg w-full sm:w-[calc(50%-1rem)] lg:w-85 mb-4">
-//                   <h2 className="text-xl md:text-2xl font-bold mb-2">فحص دم شامل</h2>
-//                   <a href="#" className="text-blue-300 hover:underline">الاعراض</a><br />
-//                   <a href="#" className="text-blue-300 hover:underline">عرض النتائج</a><br />
-//                   <p>التوصيات/ كذا كذا</p>
-//                   <a href="#" className="text-blue-300 hover:underline">تحميل التقرير</a><br />
-//                 </div>
-
-//                 <div className="card bg-emerald-900 text-white p-4 m-2 md:m-4 rounded-lg shadow-lg w-full sm:w-[calc(50%-1rem)] lg:w-85 mb-4">
-//                   <h2 className="text-xl md:text-2xl font-bold mb-2">فحص ضغط الدم</h2>
-//                   <a href="#" className="text-blue-300 hover:underline">الاعراض</a><br />
-//                   <a href="#" className="text-blue-300 hover:underline">عرض النتائج</a><br />
-//                   <p>التوصيات/ كذا كذا</p>
-//                   <a href="#" className="text-blue-300 hover:underline">تحميل التقرير</a><br />
-//                 </div>
-
-//               </div>
-//             </section>
-
-//           </main>
-//         </div>
-//       </section> }
-      
-
-//     </>
-//   )
-// }
 import { useContext, useEffect, useState } from "react";
 import api from "../utils/axiosInstance";
 import Charts from "./Charts";
 import { userContext } from "../../context/UserContext";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import Report from "../Report/Report";
 
 export default function Dashboard() {
   let { userTokenAccess } = useContext(userContext);
@@ -147,13 +13,15 @@ export default function Dashboard() {
   async function getUserInfo() {
     try {
       let { data } = await api.get(
-        `https://apis.healing-herb.midoghanam.site/auth/account/userProfile/`,
+        `/auth/account/userProfile/`,
         {
           headers: {
             Authorization: `Bearer ${userTokenAccess}`,
           },
         }
       );
+      console.log(data);
+      
       setUserInfo(data.user);
     } catch (err) {
       toast.error("خطأ في تحميل البيانات");
@@ -165,69 +33,166 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <>
+   <>
       {userInfo && (
-        <section className="pt-4 md:pt-15 font-cairo min-h-screen">
-          <div className="flex flex-col lg:flex-row">
-            {/* القائمة الجانبية */}
-            <header className="w-full lg:w-1/6 lg:h-5/6 bg-emerald-950 text-white p-4 m-2 lg:m-4 rounded-lg shadow-lg">
-              <h1 className="text-xl font-bold">الملف الشخصي</h1>
-              <nav className="mt-4 space-y-2">
-                <p className="block">الاسم: {userInfo?.name?.first} {userInfo?.name?.last}</p>
-                <p className="block">العمر: {userInfo?.age}</p>
-                <p className="block">الجنس: {userInfo?.gender}</p>
-                <p className="block">الأمراض المزمنة: {userInfo?.diseases}</p>
-                <p className="block">الحساسية: {userInfo?.allergies}</p>
-                <p className="block">الأدوية: {userInfo?.medications}</p>
-              </nav>
+        <section className="min-h-screen bg-gray-50 font-cairo" style={{marginTop: '-150px',}}>
+          <div className="container mx-auto px-4 py-6">
+            <div className="flex flex-col lg:flex-row gap-6">
+              {/* Sidebar */}
+              <aside className="w-full lg:w-1/4 bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+                <div className="flex flex-col items-center mb-6">
+                  <div className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mb-4">
+                    <span className="text-2xl text-emerald-600 font-bold">
+                      {userInfo?.name?.first?.[0]}{userInfo?.name?.last?.[0]}
+                    </span>
+                  </div>
+                  <h2 className="text-lg font-semibold text-gray-800">
+                    {userInfo?.name?.first} {userInfo?.name?.last}
+                  </h2>
+                </div>
 
-              <Link
-                to="/editProfile"
-                className="mt-4 inline-block bg-emerald-700 text-white px-4 py-2 rounded-lg hover:bg-emerald-600"
-              >
-                تعديل البيانات
-              </Link>
-            </header>
-
-            {/* المحتوى الرئيسي */}
-            <main className="w-full lg:w-5/6 p-2 md:p-4 lg:p-6">
-              <section className="mb-6">
-                <h1 className="text-2xl md:text-3xl lg:text-4xl mb-4">
-                  نظرة عامة
-                </h1>
-                <div className="cards w-full flex flex-col sm:flex-row flex-wrap justify-start">
-                  <div className="card bg-emerald-900 text-white p-4 m-2 md:m-4 rounded-lg shadow-lg w-full sm:w-[calc(50%-1rem)] lg:w-85 mb-4">
-                    <h2 className="text-xl md:text-2xl font-bold mb-2">
-                      عدد المواعيد
-                    </h2>
-                    <p className="text-2xl md:text-3xl">3</p>
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-center">
+                    <div className="w-8 text-emerald-600">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <span className="text-gray-600">العمر: </span>
+                    <span className="mr-2 text-gray-800 font-medium">{userInfo?.age}</span>
                   </div>
 
-                  <div className="card bg-emerald-900 text-white p-4 m-2 md:m-4 rounded-lg shadow-lg w-full sm:w-[calc(50%-1rem)] lg:w-85 mb-4">
-                    <h2 className="text-xl md:text-2xl font-bold mb-2">
-                      عدد التقارير
-                    </h2>
-                    <p className="text-2xl md:text-3xl">5</p>
+                  <div className="flex items-center">
+                    <div className="w-8 text-emerald-600">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                      </svg>
+                    </div>
+                    <span className="text-gray-600">الجنس: </span>
+                    <span className="mr-2 text-gray-800 font-medium">{userInfo?.gender}</span>
                   </div>
 
-                  <div className="card bg-emerald-900 text-white p-4 m-2 md:m-4 rounded-lg shadow-lg w-full sm:w-[calc(50%-1rem)] lg:w-85 mb-4">
-                    <h2 className="text-xl md:text-2xl font-bold mb-2">
-                      عدد الوصفات
-                    </h2>
-                    <p className="text-2xl md:text-3xl">2</p>
+                  <div className="flex items-start">
+                    <div className="w-8 text-emerald-600 pt-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span className="text-gray-600">الأمراض المزمنة: </span>
+                      <p className="mr-2 text-gray-800 font-medium">{userInfo?.diseases || "لا يوجد"}</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start">
+                    <div className="w-8 text-emerald-600 pt-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span className="text-gray-600">الحساسية: </span>
+                      <p className="mr-2 text-gray-800 font-medium">{userInfo?.allergies || "لا يوجد"}</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start">
+                    <div className="w-8 text-emerald-600 pt-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span className="text-gray-600">الأدوية: </span>
+                      <p className="mr-2 text-gray-800 font-medium">{userInfo?.medications || "لا يوجد"}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                   <i className="fa fa-weight"></i>
+                    <div>
+                      <span className="text-gray-600">الوزن: </span>
+                      <p className="mr-2 text-gray-800 font-medium">{userInfo?.weight || "لا يوجد"}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                   <i className="fa fa-height"></i>
+                    <div>
+                      <span className="text-gray-600">الطول: </span>
+                      <p className="mr-2 text-gray-800 font-medium">{userInfo?.height || "لا يوجد"}</p>
+                    </div>
                   </div>
                 </div>
-              </section>
 
-              <section className="mb-6">
-                <h1 className="text-2xl md:text-3xl lg:text-4xl mb-4">
-                  الإحصائيات
-                </h1>
-                <div className="charts overflow-x-auto">
-                  <Charts />
+                <Link
+                  to="/editProfile"
+                  className="flex items-center justify-center w-full bg-emerald-500 hover:bg-emerald-600 text-white py-3 px-4 rounded-lg transition-colors duration-200 font-medium"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                  </svg>
+                  تعديل البيانات
+                </Link>
+                <Report/>
+              </aside>
+
+              {/* Main Content */}
+              <main className="w-full lg:w-3/4">
+                <div className="bg-white rounded-xl shadow-sm p-6 mb-6 border border-gray-100">
+                  <h1 className="text-2xl font-bold text-gray-800 mb-6">نظرة عامة</h1>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="bg-gradient-to-r from-emerald-50 to-green-50 rounded-xl p-5 border border-emerald-100">
+                      <div className="flex items-center">
+                        <div className="bg-emerald-100 p-3 rounded-lg">
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                          </svg>
+                        </div>
+                        <div className="mr-3">
+                          <h2 className="text-gray-600 text-sm">عدد المواعيد</h2>
+                          <p className="text-2xl font-bold text-gray-800">3</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-5 border border-blue-100">
+                      <div className="flex items-center">
+                        <div className="bg-blue-100 p-3 rounded-lg">
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                          </svg>
+                        </div>
+                        <div className="mr-3">
+                          <h2 className="text-gray-600 text-sm">عدد التقارير</h2>
+                          <p className="text-2xl font-bold text-gray-800">5</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl p-5 border border-purple-100">
+                      <div className="flex items-center">
+                        <div className="bg-purple-100 p-3 rounded-lg">
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                          </svg>
+                        </div>
+                        <div className="mr-3">
+                          <h2 className="text-gray-600 text-sm">عدد الوصفات</h2>
+                          <p className="text-2xl font-bold text-gray-800">2</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </section>
-            </main>
+
+                <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+                  <h1 className="text-2xl font-bold text-gray-800 mb-6">الإحصائيات</h1>
+                  <div className="charts">
+                    <Charts />
+                  </div>
+                </div>
+              </main>
+            </div>
           </div>
         </section>
       )}

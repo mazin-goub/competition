@@ -10,10 +10,11 @@ export default function Navbar() {
   const navItems = [
     { path: "/home", label: "الرئيسية", icon: "fa-house", end: true },
     { path: "/dashboard", label: "لوحة التحكم", icon: "fa-gauge" },
-    { path: "/schedules", label: "المواعيد", icon: "fa-calendar-days" },
+    { path: "/appointments", label: "المواعيد", icon: "fa-calendar-days" },
     { path: "/library", label: "المكتبة", icon: "fa-book" },
     { path: "/stories", label: "القصص التراثية", icon: "fa-feather" },
-    { path: "/community", label: "المجتمع", icon: "fa-users" },
+    { path: "/community/recipes", label: "المجتمع", icon: "fa-users" },
+    { path: "/medicalTests", label: "التحاليل", icon: "fa-test" },
   ];
 
   const linkClass = ({ isActive }) =>

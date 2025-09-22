@@ -7,43 +7,10 @@ import * as Yup from "yup";
 import { userContext } from "../../context/UserContext";
 import api from "../utils/axiosInstance.js";
 export default function Login() {
-//    const errorMessages = {
-//     "This username is already taken.": "اسم المستخدم مستخدم بالفعل.",
+   const errorMessages = {
+    "This username is already taken.": "اسم المستخدم مستخدم بالفعل.",
 
-//   };
-//   let {setUserTokenRefresh , setUserTokenAccess} = useContext(userContext)
-//   let navigate = useNavigate();
-//   const [loading, setLoading] = useState(false)
-//   async function login(values) {
-//     try {
-//         setLoading(true)
-//       let { data } = await axios.post(
-//         `https://apis.healing-herb.midoghanam.site/auth/login/`,
-//         values,
-//         {
-//           headers: {
-//             "ngrok-skip-browser-warning": true,
-//             "Content-Type": "application/json",
-//           },
-//         }
-//       );
-//       console.log(data);
-//       localStorage.setItem("accessToken", data.tokens.access);
-// localStorage.setItem("refreshToken", data.tokens.refresh);
-// setUserTokenAccess(data.tokens.access);
-// setUserTokenRefresh(data.tokens.refresh)
-//       toast.success("تم التسجيل بنجاح!");
-//       setLoading(false);
-//       navigate('/home')
-//     } catch (error) {
-//         let serverMessage = error.response.data.error;
-        
-//       let translatedMessage = errorMessages[serverMessage] || "حدث خطأ غير متوقع، حاول مرة أخرى.";
-
-//       toast.error(translatedMessage);
-//         setLoading(false)
-//     }
-//   }
+  };
  let { setUserTokenRefresh, setUserTokenAccess } = useContext(userContext);
   let navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -61,7 +28,12 @@ export default function Login() {
       toast.success("تم تسجيل الدخول بنجاح!");
       navigate("/home");
     } catch (error) {
-      toast.error("اسم المستخدم أو كلمة المرور غير صحيحة");
+        let serverMessage = error.response.data.error;
+        
+      let translatedMessage = errorMessages[serverMessage] || "حدث خطأ غير متوقع، حاول مرة أخرى.";
+
+      toast.error(translatedMessage);
+        setLoading(false)
     } finally {
       setLoading(false);
     }
