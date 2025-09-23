@@ -35,7 +35,7 @@ export default function Dashboard() {
   return (
    <>
       {userInfo && (
-        <section className="min-h-screen bg-gray-50 font-cairo" style={{marginTop: '-150px',}}>
+        <section className="min-h-screen bg-gray-50 font-cairo" style={{marginTop: '-80px',}}>
           <div className="container mx-auto px-4 py-6">
             <div className="flex flex-col lg:flex-row gap-6">
               {/* Sidebar */}

@@ -29,52 +29,58 @@ export default function Library() {
       {herbs.length === 0 ? (
         <Loader />
       ) : (
-        <div className="container mx-auto px-4 py-16">
-          <h1 className="text-3xl md:text-4xl font-bold text-green-800 mb-10 text-center font-[var(--font-cairo)]">
-            🌿 مكتبة الأعشاب
-          </h1>
+        <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-green-50 py-12 px-6 " style={{marginTop: '-80px'}}>
+          <div className="max-w-6xl mx-auto">
+            <h1 className="text-4xl md:text-5xl font-bold text-emerald-700 mb-12 text-center font-cairo">
+              🌿 مكتبة الأعشاب
+            </h1>
 
-          <div className="overflow-x-auto shadow-2xl rounded-3xl border border-green-200">
-            <table className="table-auto w-full border-collapse text-right bg-white">
-              <thead className="bg-gradient-to-r from-green-700 to-green-500 text-white">
-                <tr>
-                  <th className="px-6 py-4 font-[var(--font-cairo)] font-bold text-sm md:text-base">
-                    #
-                  </th>
-                  <th className="px-6 py-4 font-[var(--font-cairo)] font-bold text-sm md:text-base">
-                    اسم العشبة
-                  </th>
-                  <th className="px-6 py-4 font-[var(--font-cairo)] font-bold text-sm md:text-base">
-                    الوصف
-                  </th>
-                  <th className="px-6 py-4"></th>
-                </tr>
-              </thead>
-              <tbody>
-                {herbs.map((herb, index) => (
-                  <tr
-                    key={herb.id}
-                    className="border-b last:border-0 hover:bg-green-50/80 transition-colors duration-200"
-                  >
-                    <td className="px-6 py-4 text-gray-600">{index + 1}</td>
-                    <td className="px-6 py-4 font-semibold text-green-900">
-                      {herb.name}
-                    </td>
-                    <td className="px-6 py-4 text-gray-700 max-w-xs md:max-w-md truncate">
-                      {herb.description}
-                    </td>
-                    <td className="px-6 py-4 text-center">
-                      <Link
-                        to={`/herbDetails/${herb.id}`}
-                        className="bg-green-600 hover:bg-green-700 text-white text-sm md:text-base px-4 py-2 rounded-full shadow-md transition-all duration-200"
-                      >
-                        عرض المزيد
-                      </Link>
-                    </td>
+            <div className="bg-white rounded-2xl shadow-sm border border-emerald-100 overflow-hidden">
+              <table className="w-full border-collapse text-right">
+                <thead className="bg-gradient-to-r from-emerald-600 to-emerald-500 text-white">
+                  <tr>
+                    <th className="px-8 py-6 font-cairo font-bold text-lg">
+                      #
+                    </th>
+                    <th className="px-8 py-6 font-cairo font-bold text-lg">
+                      اسم العشبة
+                    </th>
+                    <th className="px-8 py-6 font-cairo font-bold text-lg">
+                      الوصف
+                    </th>
+                    <th className="px-8 py-6 font-cairo font-bold text-lg">
+                      الإجراءات
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {herbs.map((herb, index) => (
+                    <tr
+                      key={herb.id}
+                      className="border-b border-emerald-100 last:border-0 hover:bg-emerald-50/50 transition-all duration-300"
+                    >
+                      <td className="px-8 py-6 text-gray-600 text-lg font-medium">{index + 1}</td>
+                      <td className="px-8 py-6 font-semibold text-emerald-800 text-lg">
+                        {herb.name}
+                      </td>
+                      <td className="px-8 py-6 text-gray-700 max-w-md">
+                        <div className="line-clamp-2 text-lg leading-relaxed">
+                          {herb.description}
+                        </div>
+                      </td>
+                      <td className="px-8 py-6 text-center">
+                        <Link
+                          to={`/herbDetails/${herb.id}`}
+                          className="inline-block bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-semibold text-lg"
+                        >
+                          عرض التفاصيل
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       )}

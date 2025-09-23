@@ -220,36 +220,43 @@ export default function Recipe() {
       {recipes.length === 0 ? (
         <Loader />
       ) : (
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8">
-          <div className="max-w-4xl mx-auto px-4">
-            <header className="text-center mb-8">
-              <h1 className="text-4xl font-bold text-emerald-900 mb-2">
+        <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-green-50 py-12 px-6 font-cairo" style={{marginTop: '-80px'}}>
+          <div className="max-w-4xl mx-auto">
+            <header className="text-center mb-12">
+              <h1 className="text-4xl md:text-5xl font-bold text-emerald-700 mb-4">
                 مجتمعنا
               </h1>
-              <p className="text-gray-600">مكان لتبادل الأفكار والمناقشات</p>
+              <p className="text-lg text-gray-600 mb-6">مكان لتبادل الأفكار والمناقشات حول الطب الطبيعي</p>
               <Link
                 to={"/createPost"}
-                className="text-emerald-700 hover:underline"
+                className="inline-block bg-emerald-600 text-white px-8 py-3 rounded-xl shadow-lg hover:bg-emerald-700 transition-all duration-300 font-semibold"
               >
-                اضف وصفة
+                أضف وصفة جديدة 🌿
               </Link>
             </header>
 
-            {recipes.map((rec) => (
-              <Link
-                key={rec.id}
-                to={`/community/recipes/${rec.id}`} // هنا بيروح للصفحة الجديدة
-                className="block bg-white shadow-md rounded-2xl p-4 border border-green-200 hover:shadow-lg transition mb-4"
-              >
-                <h3 className="text-xl font-semibold text-green-800">
-                  {rec.title}
-                </h3>
-                <p className="text-gray-600 mt-2">
-                  {firstNWords(rec.description, 10)}
-                </p>
-                <span>{rec.author}</span>
-              </Link>
-            ))}
+            <div className="grid gap-6">
+              {recipes.map((rec) => (
+                <Link
+                  key={rec.id}
+                  to={`/community/recipes/${rec.id}`}
+                  className="block bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 border border-emerald-100 hover:border-emerald-200 p-6"
+                >
+                  <h3 className="text-xl font-semibold text-emerald-800 mb-3">
+                    {rec.title}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed mb-4">
+                    {firstNWords(rec.description, 10)}
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-emerald-600 font-medium">{rec.author}</span>
+                    <div className="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-sm">
+                      اقرأ المزيد
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       )}

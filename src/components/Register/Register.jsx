@@ -425,73 +425,87 @@ export default function Register() {
   });
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[var(--color-secondary)] font-[var(--font-sans)]">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[var(--color-secondary)] via-white to-[var(--color-primary-light)] font-[var(--font-sans)] p-6" style={{marginTop: '-80px',}}>
       <form
         onSubmit={formik.handleSubmit}
-        className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-lg space-y-4 animate-slideDown"
+        className="bg-white/95 backdrop-blur-lg p-8 rounded-3xl shadow-2xl shadow-[var(--color-primary)]/20 w-full max-w-2xl space-y-6 animate-slideDown border border-white/20"
       >
-        <h2 className="text-2xl font-bold text-center text-[var(--color-primary)]">
-          إنشاء حساب جديد
-        </h2>
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-black bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-light)] bg-clip-text text-transparent">
+            إنشاء حساب جديد
+          </h2>
+          <p className="text-[var(--color-gray)] mt-2">املأ البيانات التالية لإنشاء حسابك</p>
+        </div>
 
-        {[
-          { name: "first_name", placeholder: "الاسم الأول" },
-          { name: "last_name", placeholder: "الاسم الأخير" },
-          { name: "username", placeholder: "اسم المستخدم" },
-          { name: "email", placeholder: "البريد الإلكتروني", type: "email" },
-          { name: "password", placeholder: "كلمة المرور", type: "password" },
-          { name: "age", placeholder: "العمر", type: "number" },
-          { name: "height", placeholder: "الطول (سم)", type: "number" },
-          { name: "weight", placeholder: "الوزن (كجم)", type: "number" },
-          { name: "diseases", placeholder: "الأمراض المزمنة" },
-          { name: "allergies", placeholder: "الحساسية" },
-          { name: "medications", placeholder: "الأدوية" },
-        ].map((field) => (
-          <div key={field.name}>
-            <input
-              type={field.type || "text"}
-              name={field.name}
-              placeholder={field.placeholder}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {[
+            { name: "first_name", placeholder: "الاسم الأول" },
+            { name: "last_name", placeholder: "الاسم الأخير" },
+            { name: "username", placeholder: "اسم المستخدم" },
+            { name: "email", placeholder: "البريد الإلكتروني", type: "email" },
+            { name: "password", placeholder: "كلمة المرور", type: "password" },
+            { name: "age", placeholder: "العمر", type: "number" },
+            { name: "height", placeholder: "الطول (سم)", type: "number" },
+            { name: "weight", placeholder: "الوزن (كجم)", type: "number" },
+            { name: "diseases", placeholder: "الأمراض المزمنة", className: "md:col-span-2" },
+            { name: "allergies", placeholder: "الحساسية", className: "md:col-span-2" },
+            { name: "medications", placeholder: "الأدوية", className: "md:col-span-2" },
+          ].map((field) => (
+            <div key={field.name} className={field.className || ""}>
+              <input
+                type={field.type || "text"}
+                name={field.name}
+                placeholder={field.placeholder}
+                onChange={formik.handleChange}
+                value={formik.values[field.name]}
+                className="w-full border-2 border-[var(--color-gray)]/30 rounded-xl px-4 py-3 focus:outline-none focus:border-[var(--color-primary)] focus:ring-4 focus:ring-[var(--color-primary-light)]/20 transition-all duration-300 hover:border-[var(--color-gray)]/50"
+              />
+              {formik.errors[field.name] && (
+                <div className="text-[var(--color-error)] text-sm mt-2 font-medium flex items-center gap-1">
+                  <span>⚠</span>
+                  {formik.errors[field.name]}
+                </div>
+              )}
+            </div>
+          ))}
+
+          <div className="md:col-span-2">
+            <select
+              name="gender"
               onChange={formik.handleChange}
-              value={formik.values[field.name]}
-              className="w-full border border-[var(--color-gray)] rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary-light)]"
-            />
-            {formik.errors[field.name] && (
-              <div className="text-[var(--color-error)] text-sm mt-1">
-                {formik.errors[field.name]}
+              value={formik.values.gender}
+              className="w-full border-2 border-[var(--color-gray)]/30 rounded-xl px-4 py-3 focus:outline-none focus:border-[var(--color-primary)] focus:ring-4 focus:ring-[var(--color-primary-light)]/20 transition-all duration-300 hover:border-[var(--color-gray)]/50"
+            >
+              <option value="">اختر الجنس</option>
+              <option value="ذكر">ذكر</option>
+              <option value="أنثى">أنثى</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+            {formik.errors.gender && (
+              <div className="text-[var(--color-error)] text-sm mt-2 font-medium flex items-center gap-1">
+                <span>⚠</span>
+                {formik.errors.gender}
               </div>
             )}
           </div>
-        ))}
-
-        <div>
-          <select
-            name="gender"
-            onChange={formik.handleChange}
-            value={formik.values.gender}
-            className="w-full border border-[var(--color-gray)] rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary-light)]"
-          >
-            <option value="">اختر الجنس</option>
-            <option value="ذكر">ذكر</option>
-            <option value="أنثى">أنثى</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-          </select>
-          {formik.errors.gender && (
-            <div className="text-[var(--color-error)] text-sm mt-1">
-              {formik.errors.gender}
-            </div>
-          )}
         </div>
 
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-[var(--color-primary)] text-white font-bold py-2 rounded-lg hover:bg-[var(--color-primary-light)] transition disabled:opacity-50"
+          className="w-full bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-light)] text-white font-black py-4 rounded-xl hover:shadow-2xl hover:shadow-[var(--color-primary)]/30 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02] active:scale-[0.98]"
         >
-          {loading ? "جاري التسجيل..." : "تسجيل"}
+          {loading ? (
+            <span className="flex items-center justify-center gap-2">
+              <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+              جاري التسجيل...
+            </span>
+          ) : (
+            "تسجيل"
+          )}
         </button>
       </form>
     </div>
-  );
+);
 }
