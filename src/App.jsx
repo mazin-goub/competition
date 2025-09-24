@@ -13,7 +13,7 @@ import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
 import Notfound from "./components/Notfound/Notfound";
 import UserContextProvider from "./context/UserContext";
-import ProtectedRoute from "./components/ProtectedRoute/protectedRoute";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import EditProfileInfo from "./components/Dashboard/EditProfileInfo";
 import AppointmentsList from "./components/Appointments/AppointmentsList";
 import AddAppointment from "./components/Appointments/AddAppointment";
