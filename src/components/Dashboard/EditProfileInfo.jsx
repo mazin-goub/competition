@@ -5,6 +5,8 @@ import api from "../utils/axiosInstance";
 import { userContext } from "../../context/UserContext";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+
 
 export default function EditProfileInfo() {
   let { userTokenAccess } = useContext(userContext);
@@ -62,6 +64,24 @@ export default function EditProfileInfo() {
   });
 
   return (
+    <>
+
+    <Helmet>
+        <title>تعديل الملف الشخصي | عشبة شفاء</title>
+        <meta
+          name="description"
+          content="قم بتحديث معلوماتك وبياناتك الشخصية داخل منصة عشبة شفاء بسهولة."
+        />
+        <meta name="robots" content="noindex, nofollow" />
+
+        <meta property="og:title" content="تعديل الملف الشخصي | عشبة شفاء" />
+        <meta
+          property="og:description"
+          content="صفحة خاصة لتحديث بياناتك في عشبة شفاء."
+        />
+        <meta property="og:type" content="website" />
+      </Helmet>
+
     <div className="p-6 font-cairo bg-gray-50 text-gray-800" style={{marginTop: '-70px'}}>
       <h1 className="text-3xl font-bold text-emerald-600 mb-8 text-center">تعديل البيانات الشخصية</h1>
 
@@ -155,5 +175,6 @@ export default function EditProfileInfo() {
         </Formik>
       )}
     </div>
+    </>
   );
 }

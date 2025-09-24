@@ -16,7 +16,7 @@ export default function Report() {
       const url = window.URL.createObjectURL(file);
 
       if (download) {
-        // تحميل الملف
+
         const link = document.createElement("a");
         link.href = url;
         link.setAttribute("download", "تقريري.pdf");
@@ -24,11 +24,10 @@ export default function Report() {
         link.click();
         link.remove();
       } else {
-        // معاينة في نافذة جديدة
+
         window.open(url, "_blank");
       }
 
-      // تفريغ الرابط من الميموري بعد ثانيتين
       setTimeout(() => window.URL.revokeObjectURL(url), 2000);
 
     } catch (err) {

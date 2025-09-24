@@ -4,6 +4,8 @@ import Loader from "../Loader/Loader";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import api from "../utils/axiosInstance";
+import { Helmet } from "react-helmet-async";
+
 
 export default function Library() {
   const [herbs, setHerbs] = useState([]);
@@ -26,10 +28,31 @@ export default function Library() {
 
   return (
     <>
+
+
+      <Helmet>
+        <title>المكتبة الصحية | عشبة شفاء</title>
+        <meta
+          name="description"
+          content="استكشف مكتبة عشبة شفاء الغنية بالمقالات والأبحاث حول الأعشاب الطبية، الطب البديل، ونصائح الصحة الطبيعية."
+        />
+        <meta
+          name="keywords"
+          content="عشبة شفاء, مكتبة, مقالات, أعشاب طبية, صحة, طب بديل, علاج طبيعي, موارد صحية"
+        />
+
+        <meta property="og:title" content="المكتبة الصحية | عشبة شفاء" />
+        <meta
+          property="og:description"
+          content="مقالات وأبحاث وموارد موثوقة حول الأعشاب والعلاج الطبيعي داخل مكتبة عشبة شفاء."
+        />
+        <meta property="og:type" content="website" />
+      </Helmet>
+
       {herbs.length === 0 ? (
         <Loader />
       ) : (
-        <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-green-50 py-12 px-6 " style={{marginTop: '-80px'}}>
+        <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-green-50 py-12 px-6 " style={{ marginTop: '-80px' }}>
           <div className="max-w-6xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold text-emerald-700 mb-12 text-center font-cairo">
               🌿 مكتبة الأعشاب

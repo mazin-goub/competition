@@ -7,8 +7,8 @@ import Layout from "./components/Layout/Layout";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Stories from "./components/Stories/Stories";
 import Chatbot from "./components/Chatbot/Chatbot";
-import { Toaster } from "react-hot-toast";
-import HerbDetails from "./components/herbDetails/herbDetails";
+import { Toaster, toast  } from "react-hot-toast";
+import HerbDetails from "./components/HerbDetails/HerbDetails.jsx";
 import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
 import Notfound from "./components/Notfound/Notfound";
@@ -19,7 +19,6 @@ import AppointmentsList from "./components/Appointments/AppointmentsList";
 import AddAppointment from "./components/Appointments/AddAppointment";
 import EditAppointment from "./components/Appointments/EditAppointment";
 import DeleteAppointment from "./components/Appointments/DeleteAppointment";
-// import MedicalTests from "./components/MedicalTests/MedicalTests";
 import PostMedicalTest from "./components/MedicalTests/PostMedicalTest";
 import CreatePost from "./components/Community/components/CreatePost";
 import MedicalTests from "./components/MedicalTests/MedicalTests";
@@ -62,8 +61,7 @@ export default function App() {
   return <>
     <UserContextProvider>
       <RouterProvider router={routers} />
-      <Toaster />
-
+      <Toaster position="top-right" reverseOrder={false}/>
     </UserContextProvider>
 
   </>

@@ -1,6 +1,4 @@
-// هذا ملف لمحاكاة API - في التطبيق الحقيقي ستقوم بالاتصال بخادم حقيقي
 
-// بيانات أولية للمنشورات
 let posts = [
   {
     id: 1,
@@ -33,19 +31,16 @@ let posts = [
   }
 ];
 
-// محاكاة التأخير في الشبكة
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-// الحصول على جميع المنشورات
 export const getPosts = async () => {
   await delay(500);
   return posts.map(({ comments, ...post }) => ({
     ...post,
-    comments: comments.slice(0, 2) // إرجاع التعليقات الأخيرة فقط للقائمة
+    comments: comments.slice(0, 2) 
   }));
 };
 
-// الحصول على منشور محدد
 export const getPost = async (id) => {
   await delay(300);
   const post = posts.find(p => p.id === parseInt(id));
@@ -55,7 +50,6 @@ export const getPost = async (id) => {
   return post;
 };
 
-// إنشاء منشور جديد
 export const createPost = async (postData) => {
   await delay(400);
   const newPost = {
@@ -70,7 +64,6 @@ export const createPost = async (postData) => {
   return newPost;
 };
 
-// إضافة تعليق
 export const addComment = async (postId, commentContent) => {
   await delay(400);
   const post = posts.find(p => p.id === parseInt(postId));
@@ -80,7 +73,7 @@ export const addComment = async (postId, commentContent) => {
   
   const newComment = {
     id: Math.max(...post.comments.map(c => c.id), 0) + 1,
-    author: 'أنت', // في التطبيق الحقيقي، سيكون اسم المستخدم الحالي
+    author: 'أنت',
     content: commentContent,
     timestamp: 'الآن'
   };
@@ -89,7 +82,6 @@ export const addComment = async (postId, commentContent) => {
   return newComment;
 };
 
-// الإعجاب أو إلغاء الإعجاب
 export const likePost = async (postId) => {
   await delay(300);
   const post = posts.find(p => p.id === parseInt(postId));

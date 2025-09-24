@@ -2,6 +2,8 @@ import { useState, useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import api from "../utils/axiosInstance";
 import { userContext } from "../../context/UserContext";
+import { Toaster, toast  } from "react-hot-toast";
+
 
 export default function EditAppointment() {
   const { userTokenAccess } = useContext(userContext);
@@ -31,7 +33,9 @@ export default function EditAppointment() {
       await api.put("/appointments/all/", { ...form, id }, {
         headers: { Authorization: `Bearer ${userTokenAccess}` },
       });
-      alert("✅ Appointment updated successfully!");
+
+      toast.success("تم التعديل بنجاح!");
+      
     } catch (err) {
       console.error("❌ Error updating appointment:", err.response?.data || err);
     }

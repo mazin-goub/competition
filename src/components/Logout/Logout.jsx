@@ -18,7 +18,6 @@ export default function Logout() {
         error.response?.data?.detail || "فشل تسجيل الخروج، حاول مرة أخرى.";
       toast.error(serverMessage);
     } finally {
-      // إزالة التوكنات دايمًا سواء حصل Error أو لا
       localStorage.removeItem("refreshToken");
       localStorage.removeItem("accessToken");
       setUserTokenAccess(null);

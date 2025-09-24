@@ -14,7 +14,6 @@ export default function UpdateMedicalTests() {
 
   const [initialValues, setInitialValues] = useState(null);
 
-  // validation schema
   const validationSchema = Yup.object({
     date: Yup.date().required("التاريخ مطلوب"),
     time: Yup.string().required("الوقت مطلوب"),
@@ -24,7 +23,6 @@ export default function UpdateMedicalTests() {
     notes: Yup.string(),
   });
 
-  // جلب بيانات التحليل
   useEffect(() => {
     async function fetchData() {
       try {

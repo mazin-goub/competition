@@ -62,7 +62,6 @@ function PostDetail({ post, onBack, onAddComment, onLikePost }) {
         </div>
       </div>
 
-      {/* قسم التعليقات */}
       <div className="bg-white p-6 rounded-xl shadow-md">
         <h3 className="text-xl font-semibold mb-4 text-gray-800">التعليقات</h3>
 

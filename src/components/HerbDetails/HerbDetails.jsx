@@ -10,7 +10,7 @@ export default function HerbDetails() {
   async function fetchDetails() {
     try {
       let { data } = await axios.get(
-        `https://apis.healing-herb.midoghanam.site/herbs/all/${id}/`,
+        `/herbs/herb/${id}/`,
         { headers: { "ngrok-skip-browser-warning": "true" } }
       );
       setDetails(data);

@@ -1,6 +1,8 @@
 import { useState, useContext } from "react";
 import api from "../utils/axiosInstance";
 import { userContext } from "../../context/UserContext";
+import { Toaster, toast  } from "react-hot-toast";
+
 
 export default function AddAppointment() {
   const { userTokenAccess } = useContext(userContext);
@@ -21,7 +23,7 @@ export default function AddAppointment() {
       await api.post("/appointments/all/", form, {
         headers: { Authorization: `Bearer ${userTokenAccess}` },
       });
-      alert("✅ Appointment added successfully!");
+      toast.success("تم الحفظ بنجاح!");
       setForm({
         date: "",
         time: "",

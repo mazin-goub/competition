@@ -5,6 +5,8 @@ import { userContext } from "../../context/UserContext";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import Report from "../Report/Report";
+import { Helmet } from "react-helmet-async";
+
 
 export default function Dashboard() {
   let { userTokenAccess } = useContext(userContext);
@@ -34,11 +36,27 @@ export default function Dashboard() {
 
   return (
    <>
+
+      <Helmet>
+        <title>لوحة التحكم | عشبة شفاء</title>
+        <meta
+          name="description"
+          content="لوحة التحكم الخاصة بك في عشبة شفاء لإدارة حسابك، المواعيد، والمجتمع الصحي."
+        />
+        <meta name="robots" content="noindex, nofollow" />
+
+        <meta property="og:title" content="لوحة التحكم | عشبة شفاء" />
+        <meta
+          property="og:description"
+          content="إدارة ملفك ومتابعة نشاطاتك داخل منصة عشبة شفاء."
+        />
+        <meta property="og:type" content="website" />
+      </Helmet>
+    
       {userInfo && (
         <section className="min-h-screen bg-gray-50 font-cairo" style={{marginTop: '-80px',}}>
           <div className="container mx-auto px-4 py-6">
             <div className="flex flex-col lg:flex-row gap-6">
-              {/* Sidebar */}
               <aside className="w-full lg:w-1/4 bg-white rounded-xl shadow-sm p-6 border border-gray-100">
                 <div className="flex flex-col items-center mb-6">
                   <div className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mb-4">
@@ -135,7 +153,6 @@ export default function Dashboard() {
                 <Report/>
               </aside>
 
-              {/* Main Content */}
               <main className="w-full lg:w-3/4">
                 <div className="bg-white rounded-xl shadow-sm p-6 mb-6 border border-gray-100">
                   <h1 className="text-2xl font-bold text-gray-800 mb-6">نظرة عامة</h1>

@@ -2,6 +2,8 @@ import { useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../utils/axiosInstance";
 import { userContext } from "../../context/UserContext";
+import { Toaster, toast  } from "react-hot-toast";
+
 
 export default function DeleteAppointment() {
   const { userTokenAccess } = useContext(userContext);
@@ -14,10 +16,12 @@ export default function DeleteAppointment() {
     try {
       await api.delete("/appointments/all/", {
         headers: { Authorization: `Bearer ${userTokenAccess}` },
-        data: { id }, // مهم جدًا 👈
+        data: { id }, 
       });
-      alert("✅ Appointment deleted successfully!");
-      navigate("/appointments"); // رجع للـ list
+
+      toast.success("تم الحذف بنجاح!");
+      
+      navigate("/appointments"); 
     } catch (err) {
       console.error("❌ Error deleting appointment:", err.response?.data || err);
     }

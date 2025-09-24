@@ -11,7 +11,7 @@ function CreatePost({ onSubmit, onCancel }) {
   };
 
   return (
-    <div className="p-6 font-cairo" style={{marginTop: '-80px'}}>
+    <div className="p-6 font-cairo" style={{marginTop: '-60px'}}>
       <button
         onClick={onCancel}
         className="flex items-center text-emerald-600 hover:text-emerald-700 mb-8 transition-all duration-300 font-semibold"

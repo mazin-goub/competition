@@ -1,4 +1,3 @@
-// src/api/axiosInstance.js
 import axios from "axios";
 
 const api = axios.create({
@@ -9,7 +8,6 @@ const api = axios.create({
   },
 });
 
-// 🟢 Request Interceptor → يضيف Access Token لكل Request
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("accessToken");
@@ -21,13 +19,11 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// 🟢 Response Interceptor → يجدد Access Token لو انتهى
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
     const originalRequest = error.config;
 
-    // تحقق من الخطأ (401 Unauthorized) + وجود refreshToken
     if (
       error.response?.status === 401 &&
       !originalRequest._retry &&
@@ -37,7 +33,6 @@ api.interceptors.response.use(
       try {
         const refreshToken = localStorage.getItem("refreshToken");
 
-        // اطلب Access Token جديد
         const { data } = await axios.post(
           "https://codixhumbled.eu.pythonanywhere.com/auth/token/refresh/",
           { refresh: refreshToken },
@@ -49,10 +44,8 @@ api.interceptors.response.use(
           }
         );
 
-        // خزّن التوكن الجديد
         localStorage.setItem("accessToken", data.access);
 
-        // حدث الـ headers
         api.defaults.headers.common[
           "Authorization"
         ] = `Bearer ${data.access}`;
@@ -60,10 +53,8 @@ api.interceptors.response.use(
           "Authorization"
         ] = `Bearer ${data.access}`;
 
-        // جرّب نفس الـ request تاني
         return api(originalRequest);
       } catch (err) {
-        // لو refreshToken نفسه بايظ → رجّع المستخدم للـ login
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");
         window.location.href = "/login";

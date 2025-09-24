@@ -46,7 +46,6 @@ function Charts() {
   return (
     <div className="min-h-screen mt-10">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Line Chart */}
         <div>
           <h2 className="text-lg font-semibold mb-4">Line Chart</h2>
           <ResponsiveContainer width="100%" height={300}>
@@ -62,7 +61,6 @@ function Charts() {
           </ResponsiveContainer>
         </div>
 
-        {/* Bar Chart */}
         <div>
           <h2 className="text-lg font-semibold mb-4">Bar Chart</h2>
           <ResponsiveContainer width="100%" height={300}>
@@ -77,7 +75,6 @@ function Charts() {
           </ResponsiveContainer>
         </div>
 
-        {/* Pie Chart */}
         <div>
           <h2 className="text-lg font-semibold mb-4">Pie Chart</h2>
           <ResponsiveContainer width="100%" height={300}>
@@ -101,7 +98,6 @@ function Charts() {
           </ResponsiveContainer>
         </div>
 
-        {/* Mixed Chart (Bar + Line) */}
         <div>
           <h2 className="text-lg font-semibold mb-4">Mixed Chart</h2>
           <ResponsiveContainer width="100%" height={300}>
